@@ -2,7 +2,8 @@
 import { createClient } from 'redis';
 
 const redisClient = createClient({
-  url: process.env.REDIS_URL || 'redis://localhost:6379',
+  url: process.env.UPSTASH_REDIS_REST_URL  ,
+  token:'UPSTASH_REDIS_REST_TOKEN',
 });
 
 redisClient.on('error', (err) => {
@@ -15,3 +16,4 @@ redisClient.on('error', (err) => {
 })();
 
 export default redisClient;
+process.env.REDIS_URL

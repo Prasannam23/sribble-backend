@@ -1,4 +1,7 @@
 // server.js
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -18,12 +21,11 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
-
 app.use('/api', apiRoutes);
 
 registerSocketHandlers(io);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log(`🎨 Drawing Game Server running on port ${PORT}`);
   console.log(`🔗 Socket.io endpoint: http://localhost:${PORT}`);
