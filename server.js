@@ -1,4 +1,4 @@
-// server.js
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -27,7 +27,7 @@ registerSocketHandlers(io);
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
-  console.log(`🎨 Drawing Game Server running on port ${PORT}`);
-  console.log(`🔗 Socket.io endpoint: http://localhost:${PORT}`);
-  console.log(`🌐 REST API: http://localhost:${PORT}/api`);
+  console.log(` Drawing Game Server running on port ${PORT}`);
+  console.log(` Socket.io endpoint: http://localhost:${PORT}`);
+  console.log(` REST API: http://localhost:${PORT}/api`);
 });

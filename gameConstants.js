@@ -12,8 +12,8 @@ export const GAME_STATES = {
     VOTER: 'voter',
   };
   
-  export const DRAWING_TIME = 120000; // 2 minutes in ms
-  export const VOTING_TIME = 30000;   // 30 seconds in ms
+  export const DRAWING_TIME = 120000; 
+  export const VOTING_TIME = 30000;   
   export const MAX_PLAYERS = 2;
   
   export const DRAWING_PROMPTS = [

@@ -25,7 +25,7 @@ export async function createRoom(roomId, creatorSocketId, creatorName) {
     gameHistory: [],
   };
 
-  await redisClient.setEx(`room:${roomId}`, 3600, JSON.stringify(room)); // expire 1 hr
+  await redisClient.setEx(`room:${roomId}`, 3600, JSON.stringify(room)); 
   return room;
 }
 
