@@ -25,7 +25,10 @@ export async function createRoom(roomId, creatorSocketId, creatorName) {
     gameHistory: [],
   };
 
-  await redisClient.setEx(`room:${roomId}`, 3600, JSON.stringify(room)); 
+  await redisClient.set(`room:${roomId}`, JSON.stringify(room), {
+    ex: 3600, // ⏱️ expires in 1 hour
+  });
+
   return room;
 }
 
@@ -35,7 +38,9 @@ export async function getRoom(roomId) {
 }
 
 export async function updateRoom(roomId, room) {
-  await redisClient.setEx(`room:${roomId}`, 3600, JSON.stringify(room));
+  await redisClient.set(`room:${roomId}`, JSON.stringify(room), {
+    ex: 3600,
+  });
 }
 
 export async function deleteRoom(roomId) {
