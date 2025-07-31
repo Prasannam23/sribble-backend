@@ -17,7 +17,7 @@ const io = new Server(server, {
   },
 });
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], 
+  origin: ['http://localhost:3000', 'https://scribble-frontend-lake.vercel.app/'], 
   credentials: true
 }));
 
