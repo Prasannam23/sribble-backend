@@ -16,6 +16,10 @@ const io = new Server(server, {
     methods: ['GET', 'POST'],
   },
 });
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://your-frontend-domain.com'], 
+  credentials: true
+}));
 
 app.use(cors());
 app.use(express.json());
