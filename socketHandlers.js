@@ -405,7 +405,7 @@ async function endGame(io, roomId) {
   console.log(`Game ended in room ${roomId}. Winner: ${winner?.playerName || 'No winner'}`);
 }
 
-// Find rooms that include the user from Redis keys
+
 async function findUserRooms(socketId) {
   const keys = await redisClient.keys('room:*');
   const rooms = [];
