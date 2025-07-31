@@ -26,7 +26,7 @@ export async function createRoom(roomId, creatorSocketId, creatorName) {
   };
 
   await redisClient.set(`room:${roomId}`, JSON.stringify(room), {
-    ex: 3600, // ⏱️ expires in 1 hour
+    ex: 3600, // 1 hour expiry
   });
 
   return room;
@@ -34,7 +34,7 @@ export async function createRoom(roomId, creatorSocketId, creatorName) {
 
 export async function getRoom(roomId) {
   const roomData = await redisClient.get(`room:${roomId}`);
-  return roomData ? JSON.parse(roomData) : null;
+  return roomData ?? null; 
 }
 
 export async function updateRoom(roomId, room) {
