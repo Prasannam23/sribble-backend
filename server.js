@@ -1,4 +1,4 @@
-import 'dotenv/config';
+
 
 import express from 'express';
 import http from 'http';
@@ -7,6 +7,7 @@ import cors from 'cors';
 import registerSocketHandlers from './socketHandlers.js';
 import redisClient from './redisClient.js';
 import apiRoutes from './apiRoutes.js';
+import { startKeepAlive } from './keepAlive.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -23,6 +24,12 @@ app.use(cors({
 
 app.use(cors());
 app.use(express.json());
+
+// Health check endpoint to keep Render instance active
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 app.use('/api', apiRoutes);
 
 registerSocketHandlers(io);
@@ -32,4 +39,8 @@ server.listen(PORT, () => {
   console.log(` Drawing Game Server running on port ${PORT}`);
   console.log(` Socket.io endpoint: http://localhost:${PORT}`);
   console.log(` REST API: http://localhost:${PORT}/api`);
+  
+  // Start keep-alive for Render deployment
+  const baseUrl = process.env.SERVER_URL || `http://localhost:${PORT}`;
+  startKeepAlive(baseUrl);
 });
