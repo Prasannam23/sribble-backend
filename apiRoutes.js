@@ -24,8 +24,13 @@ router.get('/rooms/:roomId', async (req, res) => {
   }
 });
 
-router.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+// Cron health endpoint (lightweight, for scheduled tasks)
+router.get('/cron/health', (req, res) => {
+  res.json({ 
+    success: true,
+    status: 'OK', 
+    timestamp: new Date().toISOString() 
+  });
 });
 
 export default router;

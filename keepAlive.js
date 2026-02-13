@@ -23,7 +23,7 @@ export function startKeepAlive(baseUrl) {
 
 async function pingHealth() {
   try {
-    const healthUrl = `${serverUrl}/health`;
+    const healthUrl = `${serverUrl}/api/cron/health`;
     const response = await fetch(healthUrl, {
       method: 'GET',
       timeout: 5000,
@@ -31,11 +31,11 @@ async function pingHealth() {
     
     if (response.ok) {
       const data = await response.json();
-      console.log(`[${new Date().toISOString()}] Health check successful:`, data);
+      console.log(`[${new Date().toISOString()}] Cron health check successful:`, data);
     } else {
-      console.warn(`[${new Date().toISOString()}] Health check returned status: ${response.status}`);
+      console.warn(`[${new Date().toISOString()}] Cron health check returned status: ${response.status}`);
     }
   } catch (error) {
-    console.error(`[${new Date().toISOString()}] Health check failed:`, error.message);
+    console.error(`[${new Date().toISOString()}] Cron health check failed:`, error.message);
   }
 }
